@@ -25,7 +25,6 @@
 #define FADING_POWER -15 //(db)
 
 #define SNR 25
-#define SYNC_FLAG false
 
 #define TRIAL_NUMBER 10000
 #include "correlation.hpp"
@@ -77,7 +76,7 @@ int main(void) {
   std::vector<double> initVector;
   int pnumInt;
   char space;
-  ifstream ifs("../data/pnum.dat");
+  ifstream ifs("pnum.dat");
   ofstream ofs("../data/IT/cheby_LSF.dat");
   while (!ifs.eof()) {
     ifs >> pnumInt;

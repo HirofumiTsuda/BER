@@ -25,8 +25,6 @@
 #define MAX_FADING_NUM 0 // zero is equivalent to no fadidng, default 9
 #define FADING_POWER -15 //(db)
 
-#define SYNC_FLAG false
-
 #define TRIAL_NUMBER 10000
 #include "correlation.hpp"
 #include "code.hpp"
@@ -79,7 +77,7 @@ int main(void) {
   std::vector<double> initVector;
   int pnumInt;
   char space;
-  ifstream ifs("../data/pnum.dat");
+  ifstream ifs("pnum.dat");
   ofstream ofs("../data/IT/db/FZC_db.dat");
   while (!ifs.eof()) {
     ifs >> pnumInt;
