@@ -13,7 +13,7 @@ This repository consists of the following files:
 
 1. main.cpp
 With this file, we can investigate BER in the following situation:
-・SNR (the power of channel Gaussian Noise) is fixed. 
+・SNR (the power of channel Gaussian noise) is fixed. 
 ・The number of the users varies.
 ・The modulation scheme is BPSK.
 ・No error correction code is used.
@@ -23,7 +23,7 @@ CHIP : the number of components in sequences. This parameter is commonly used in
 BIT : the number of bits sent to the receiver.
 MIN_USER_NUM : the minimum number of the users in the simulation.
 MAX_USER_NUM : the maximum number of the users in the simulation.
-INTERVAL : In this simulation, integral is calculated with trapezoidal approximation. This parameter denotes the width of each trapezoid. The calculation gets more precisely as this parameter gets larger.
+INTERVAL : In this simulation, integral is calculated with the trapezoidal approximation. This parameter denotes the width of each trapezoid. The calculation gets more precisely as this parameter gets larger.
 LATE : the maximum delay-time (delay time is chosen randomly).
 CHANNEL_LENGTH : the length of channel (This parameter must not be changed)
 COV_COUNT : not used
@@ -45,10 +45,10 @@ These sequences are defined in ''code.cpp''.
 In this file, OpenMP technique is used. Further, correlation.o and code.o are required.
 If you use Makefile, please type ''make''.
 
--- How to set Sequence --
+-- How to set sequences --
 Each element of sequences is in code[k][n]. The symbol code[k][n] denotes the n-th element of the user k. Note that the variable k and n vary in the ranges k=0,..,K-1 and n=0,...,N-1, respectively. Here, K and N are the number of users and the length of sequences, respectively. Further, we assume that the following property is satisfied:
 |code[k][0]|^2 + |code[k][1]|^2 + ... + |code[k][N-1]|^2 = N.
-The above property is equivalent to that the l2 norm of the each sequence is N.
+The above property is equivalent to that the l2 norm of each sequence is N.
 
 2. db.cpp
 With this file, we can investigate BER in the following situation:
@@ -92,4 +92,4 @@ In this file, the sequences for asynchronous CDMA systems are defined.
 If you would like to add sequences, please define and add your sequence to this file. Further, please add your function to ''code.hpp''.
 
 4. correlation.cpp
-Do not change.
+Please do not change.
