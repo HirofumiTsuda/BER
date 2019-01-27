@@ -1,8 +1,10 @@
-These files can be used to evaliate Bit Error Rate (BER) in Asynchronous CDMA systems.
+These files can be used to evaluate Bit Error Rate (BER) in Asynchronous CDMA systems.
 This repository consists of the following files:
+
 -- main functions --
 ・main.cpp
 ・db.cpp
+
 -- library files --
 ・code.cpp
 ・code.hpp
@@ -10,9 +12,11 @@ This repository consists of the following files:
 ・correlation.hpp
 
 1. main.cpp
-With this file, we can invertigate BER in the following situation:
+With this file, we can investigate BER in the following situation:
 ・SNR (the power of channel Gaussian Noise) is fixed. 
 ・The number of the users varies.
+・The modulation scheme is BPSK.
+・No error correction code is used.
 
 -- parameters (defined in #define)--
 CHIP : the number of components in sequences. This parameter is commonly used in all the users.
@@ -32,19 +36,27 @@ TRIAL_NUMBER : the number of iterations
 
 -- how to use --
 First, please set the parameters described above. Then, please choose the sequence.
-This file requires the input file ``pnum.dat''.
+This file requires the input file ''pnum.dat''.
 The output file is defined in row-number 80. Please set your desired directory. 
 Below the setBit (row number 123), there are some kinds of sequences. Please choose one.
-These sequences are defined in ``code.cpp''.
+These sequences are defined in ''code.cpp''.
 
 -- Compile --
 In this file, OpenMP technique is used. Further, correlation.o and code.o are required.
-If you use Makefile, please type ``make''.
+If you use Makefile, please type ''make''.
+
+-- How to set Sequence --
+Each element of sequences is in code[k][n]. The symbol code[k][n] denotes the n-th element of the user k. Note that the variable k and n vary in the ranges k=0,..,K-1 and n=0,...,N-1, respectively. Here, K and N are the number of users and the length of sequences, respectively. Further, we assume that the following property is satisfied:
+|code[k][0]|^2 + |code[k][1]|^2 + ... + |code[k][N-1]|^2 = N.
+The above property is equivalent to that the l2 norm of the each sequence is N.
 
 2. db.cpp
-With this file, we can invertigate BER in the following situation:
+With this file, we can investigate BER in the following situation:
 ・SNR (the power of channel Gaussian Noise) varies. 
 ・The number of the users is fixed.
+・The modulation scheme is BPSK.
+・No error correction code is used.
+
 Please notice that the above situation is different from one considered in main.cpp.
 
 -- parameters (defined in #define)--
@@ -65,18 +77,19 @@ TRIAL_NUMBER : the number of iterations
 
 -- how to use --
 First, please set the parameters described above. Then, please choose the sequence.
-This file requires the input file ``pnum.dat''.
+This file requires the input file ''pnum.dat''.
 The output file is defined in row-number 81. Please set your desired directory. 
 Below the setBit (row number 128), there are some kinds of sequences. Please choose one.
-These sequences are defined in ``code.cpp''.
+These sequences are defined in ''code.cpp''.
+About how to set sequences, please see 1. main.cpp.
 
 -- Compile --
 In this file, OpenMP technique is used. Further, correlation.o and code.o are required.
-If you use Makefile, please type ``make''.
+If you use Makefile, please type ''make''.
 
 3. code.cpp
 In this file, the sequences for asynchronous CDMA systems are defined.
-If you would like to add sequences, please define and add your sequence to this file. Further, please add your function to ``code.hpp''.
+If you would like to add sequences, please define and add your sequence to this file. Further, please add your function to ''code.hpp''.
 
 4. correlation.cpp
 Do not change.
